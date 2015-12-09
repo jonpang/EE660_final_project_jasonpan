@@ -84,11 +84,12 @@ for j=1:10 %%can take a while
     Xtestd=dept2g{j};
     Xtestf=fnum2g{j};
     forestd = fitForest(Xtraind',Ytrain,'randomFeatures',30,'bagSize',1/3,'ntrees',ntree);
-    forestf = fitForest(Xtrainf',Ytrain,'randomFeatures',20,'bagSize',1/3,'ntrees',ntree);
+    %forestf = fitForest(Xtrainf',Ytrain,'randomFeatures',20,'bagSize',1/3,'ntrees',ntree);
+    %%^have to reimplement as 2 dimension input rather than cell
     yhatd{j} = predictForest(forestd,Xtestd');
-    yhatf{j} = predictForest(forestf,Xtestf');
+    %yhatf{j} = predictForest(forestf,Xtestf');
     errord(j) = sum(((ytestd-yhatd{j})./ytestd).^2)/10000;
-    errorf(j) = sum(((ytestf-yhatf{j})./ytestf).^2)/10000;
+    %errorf(j) = sum(((ytestf-yhatf{j})./ytestf).^2)/10000;
 end
 errd=sum(errord(:))/10;
-errf=sum(errorf(:))/10;
+%errf=sum(errorf(:))/10;
